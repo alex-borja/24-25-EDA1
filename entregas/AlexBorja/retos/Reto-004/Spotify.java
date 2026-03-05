@@ -34,16 +34,6 @@ class Spotify {
       System.out.println("2. Reproducir");
       System.out.println("3. Salir");
 
-      while (true) {
-         try {
-            int choice = Integer.parseInt(System.console().readLine());
-            if (choice < 1 || choice > 3) {
-               throw new NumberFormatException();
-            }
-            return choice;
-         } catch (NumberFormatException e) {
-            System.out.println("Por favor, introduce un número válido");
-         }
-      }
+      return InputHelper.readInt(1, 3, "Por favor, introduce un número válido (1-3)");
    }
 }

@@ -75,18 +75,7 @@ class SpotifyPlayer {
    }
 
    private int getChoice() {
-      int choice;
-      while (true) {
-         try {
-            choice = Integer.parseInt(System.console().readLine());
-            if (choice < 1 || choice > 8) {
-               throw new NumberFormatException();
-            }
-            return choice;
-         } catch (NumberFormatException e) {
-            System.out.println("Por favor, introduce un número válido");
-         }
-      }
+      return InputHelper.readInt(1, 8, "Por favor, introduce un número válido (1-8)");
    }
 
    private void displayCurrentSong() {
