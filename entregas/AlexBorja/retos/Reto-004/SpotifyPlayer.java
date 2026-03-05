@@ -3,14 +3,13 @@ class SpotifyPlayer {
    private Stack history;
    private Song currentSong;
    private boolean shuffle;
-   private boolean repeat;
+   private static final int MAX_HISTORY_CAPACITY = 10;
 
    public SpotifyPlayer() {
       setPlayerList();
-      this.history = new Stack(10);
+      this.history = new Stack(MAX_HISTORY_CAPACITY);
       this.currentSong = null;
       this.shuffle = false;
-      this.repeat = false;
    }
 
    public void run() {
@@ -36,9 +35,6 @@ class SpotifyPlayer {
             case 6:
                toggleShuffle();
                break;
-            case 7:
-               toggleRepeat();
-               break;
             case 8:
                return;
          }
@@ -53,7 +49,6 @@ class SpotifyPlayer {
       System.out.println("4. Ver cola de reproducción");
       System.out.println("5. Ver historial");
       System.out.println("6. Activar/desactivar aleatorio");
-      System.out.println("7. Activar/desactivar repetición");
       System.out.println("8. Volver al menú principal");
 
    }
@@ -75,18 +70,7 @@ class SpotifyPlayer {
    }
 
    private int getChoice() {
-      int choice;
-      while (true) {
-         try {
-            choice = Integer.parseInt(System.console().readLine());
-            if (choice < 1 || choice > 8) {
-               throw new NumberFormatException();
-            }
-            return choice;
-         } catch (NumberFormatException e) {
-            System.out.println("Por favor, introduce un número válido");
-         }
-      }
+      return InputHelper.readInt(1, 8, "Por favor, introduce un número válido (1-8)");
    }
 
    private void displayCurrentSong() {
@@ -146,11 +130,5 @@ class SpotifyPlayer {
       this.shuffle = !this.shuffle;
       String status = (this.shuffle ? "activado" : "desactivado");
       System.out.println("\nAleatorio " + status + "\n");
-   }
-
-   private void toggleRepeat() {
-      this.repeat = !this.repeat;
-      String status = (this.repeat ? "activada" : "desactivada");
-      System.out.println("Repetición " + status + "\n");
    }
 }
