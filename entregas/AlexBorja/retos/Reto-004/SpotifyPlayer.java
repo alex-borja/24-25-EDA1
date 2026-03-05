@@ -3,10 +3,11 @@ class SpotifyPlayer {
    private Stack history;
    private Song currentSong;
    private boolean shuffle;
+   private static final int MAX_HISTORY_CAPACITY = 10;
 
    public SpotifyPlayer() {
       setPlayerList();
-      this.history = new Stack(10);
+      this.history = new Stack(MAX_HISTORY_CAPACITY);
       this.currentSong = null;
       this.shuffle = false;
    }
