@@ -3,14 +3,12 @@ class SpotifyPlayer {
    private Stack history;
    private Song currentSong;
    private boolean shuffle;
-   private boolean repeat;
 
    public SpotifyPlayer() {
       setPlayerList();
       this.history = new Stack(10);
       this.currentSong = null;
       this.shuffle = false;
-      this.repeat = false;
    }
 
    public void run() {
@@ -36,9 +34,6 @@ class SpotifyPlayer {
             case 6:
                toggleShuffle();
                break;
-            case 7:
-               toggleRepeat();
-               break;
             case 8:
                return;
          }
@@ -53,7 +48,6 @@ class SpotifyPlayer {
       System.out.println("4. Ver cola de reproducción");
       System.out.println("5. Ver historial");
       System.out.println("6. Activar/desactivar aleatorio");
-      System.out.println("7. Activar/desactivar repetición");
       System.out.println("8. Volver al menú principal");
 
    }
@@ -135,11 +129,5 @@ class SpotifyPlayer {
       this.shuffle = !this.shuffle;
       String status = (this.shuffle ? "activado" : "desactivado");
       System.out.println("\nAleatorio " + status + "\n");
-   }
-
-   private void toggleRepeat() {
-      this.repeat = !this.repeat;
-      String status = (this.repeat ? "activada" : "desactivada");
-      System.out.println("Repetición " + status + "\n");
    }
 }
